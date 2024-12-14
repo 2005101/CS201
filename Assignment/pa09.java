@@ -13,3 +13,41 @@ public class Pa09 {
  System.out.println("Sales above 100: " + Ledger.getCountAbove(100));// CAN THIS BE ANY VALUE?
  }
 }
+public class Ledger{
+ //data fields
+ private double[] sale;// this is an array
+ private int salesMade;// number of sales so far
+ private int maxSales;// the max nb of sales that can be recorded
+ //methods
+ public Ledger(int max){
+ maxSales=max;
+ sale=new double[max]; // create the array in the memory
+ salesMade=0;
+ }
+ public void addSale(double amount){
+ sale[salesMade]=amount;
+ salesMade++;
+ }
+ public int getNumberOfSales(){
+ return salesMade;
+ }
+ public double getTotalSales(){
+ double total = 0;
+ for (int i = 0; i < salesMade; i++) {
+ total += sale[i];
+ }
+ return total;
+ }
+ public double getAverageSale(){ // return the average after calculating it
+ return getTotalSales() / salesMade;
+ }
+ public int getCountAbove(double value){ // this to count above average
+ int count = 0;
+ for (int i = 0; i < salesMade; i++) {
+ if (sale[i] > value) {
+ count++;
+ }
+ }
+ return count;
+ }
+}
